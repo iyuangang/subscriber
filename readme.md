@@ -1,4 +1,4 @@
-Readme of english version refers to [Readme_EN.md](https://github.com/iyuangang/subscriber/master/readme_EN.md)
+Readme of english version refers to [Readme_EN.md](https://github.com/iyuangang/subscriber/blob/master/readme_EN.md)
 
 #简介
 这是一个运行在Google App Engine(GAE)上的Kindle个人推送服务应用，生成排版精美的杂志模式mobi/epub格式自动每天推送至您的Kindle或其他邮箱。
@@ -25,7 +25,7 @@ Readme of english version refers to [Readme_EN.md](https://github.com/iyuangang/
 
 4. 安装 [GAE SDK](https://cloud.google.com/appengine/downloads)。  
 
-5. 下载 [KindleEar](https://github.com/cdhigh/KindleEar/archive/master.zip) ，解压到一个特定的目录。
+5. 下载 [Subscriber](https://github.com/iyuangang/subscriber/archive/master.zip) ，解压到一个特定的目录。
 
 6. 在以下三个文件中修改一些参数：  
 
@@ -44,7 +44,7 @@ config.py          | DOMAIN      | 你申请的应用的域名        |
 
 9. 全部完成后就可以尝试打开域名：  
 *http://appid.appspot.com*  (appid是你申请的application名字)  
-比如作者的网站域名为：<http://kindleear.appspot.com/>  
+比如作者的网站域名为：<http://ikindleyg.appspot.com/>  
 **注：初始用户名为 admin，密码为 admin，建议登录后及时修改密码。**
 
 10. 更详细一点的说明请参照Github上的 [FAQ](http://htmlpreview.github.io/?https://github.com/cdhigh/KindleEar/blob/master/static/faq.html) 或作者网站的 [FAQ](http://kindleear.appspot.com/static/faq.html) 链接。有关部署失败，部署后"internal server error"等问题都有解释。  
