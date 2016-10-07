@@ -44,7 +44,6 @@ config.py          | DOMAIN      | 你申请的应用的域名        |
 
 9. 全部完成后就可以尝试打开域名：  
 *http://appid.appspot.com*  (appid是你申请的application名字)  
-比如作者的网站域名为：<http://ikindleyg.appspot.com/>  
 **注：初始用户名为 admin，密码为 admin，建议登录后及时修改密码。**
 
 10. 更详细一点的说明请参照Github上的 [FAQ](http://htmlpreview.github.io/?https://github.com/cdhigh/KindleEar/blob/master/static/faq.html) 或作者网站的 [FAQ](http://kindleear.appspot.com/static/faq.html) 链接。有关部署失败，部署后"internal server error"等问题都有解释。  
