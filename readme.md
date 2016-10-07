@@ -1,7 +1,5 @@
 Readme of english version refers to [Readme_EN.md](https://github.com/iyuangang/subscriber/blob/master/readme_EN.md)
 
-This is a remark!
-
 #简介
 这是一个运行在Google App Engine(GAE)上的Kindle个人推送服务应用，生成排版精美的杂志模式mobi/epub格式自动每天推送至您的Kindle或其他邮箱。
 
