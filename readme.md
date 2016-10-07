@@ -65,4 +65,4 @@ KindleEar is licensed under the [AGPLv3](http://www.gnu.org/licenses/agpl-3.0.ht
 
 #捐赠
 如果你希望支持一下KindleEar，可以戳 [Wiki捐赠页面](https://github.com/cdhigh/KindleEar/wiki/Donate)
-# subscriber
+
