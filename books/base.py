@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-KindleEar电子书基类，每本投递到kindle的书籍抽象为这里的一个类。
+Subscriber电子书基类，每本投递到kindle的书籍抽象为这里的一个类。
 可以继承BaseFeedBook类而实现自己的定制书籍。
 """
 import os, re, urllib, urlparse, imghdr, datetime, hashlib
