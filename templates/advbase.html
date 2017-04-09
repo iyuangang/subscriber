@@ -39,46 +39,46 @@ td:hover span{
 {% endblock -%}
 {% block content -%}
 <div class="pure-skin-mine">
-<div class="pure-g">
-  <div class="pure-u-4-5">
-  <div class="m-box-l">
-   {% block advcontent -%}
-   {% endblock -%}
-  </div>
-  </div>
-  
-  <div class="pure-u-1-5">
-  <div class="m-box-r">
-   <div class="pure-menu pure-menu-open">
-    <ul>
-    {% if advcurr=='whitelist' -%}
-      <li class="pure-menu-selected"><a href="#">{{_("White List")}}</a>
-      </li>
-    {% else -%}
-      <li><a href="/advwhitelist">{{_("White List")}}</a></li>
-    {% endif -%}
-    {% if advcurr=='share' -%}
-      <li class="pure-menu-selected"><a href="#">{{_("Share")}}</a>
-      </li>
-    {% else -%}
-      <li><a href="/advarchive">{{_("Share")}}</a></li>
-    {% endif -%}
-    {% if advcurr=='urlfilter' -%}
-      <li class="pure-menu-selected"><a href="#">{{_("Url Filter")}}</a>
-      </li>
-    {% else -%}
-      <li><a href="/advurlfilter">{{_("Url Filter")}}</a></li>
-    {% endif -%}
-    {% if advcurr=='import' -%}
-      <li class="pure-menu-selected"><a href="#">{{_("Import Feeds")}}</a>
-      </li>
-    {% else -%}
-      <li><a href="/advimport">{{_("Import Feeds")}}</a></li>
-    {% endif -%}
-    </ul>
-   </div>
-  </div>
-  </div>
-</div>
+    <div class="pure-g">
+        <div class="pure-u-4-5">
+            <div class="m-box-l">
+                {% block advcontent -%}
+                {% endblock -%}
+            </div>
+        </div>
+
+        <div class="pure-u-1-5">
+            <div class="m-box-r">
+                <div class="pure-menu pure-menu-open">
+                    <ul>
+                        {% if advcurr=='whitelist' -%}
+                        <li class="pure-menu-selected"><a href="#">{{_("White List")}}</a>
+                        </li>
+                        {% else -%}
+                        <li><a href="/advwhitelist">{{_("White List")}}</a></li>
+                        {% endif -%}
+                        {% if advcurr=='share' -%}
+                        <li class="pure-menu-selected"><a href="#">{{_("Share")}}</a>
+                        </li>
+                        {% else -%}
+                        <li><a href="/advarchive">{{_("Share")}}</a></li>
+                        {% endif -%}
+                        {% if advcurr=='urlfilter' -%}
+                        <li class="pure-menu-selected"><a href="#">{{_("Url Filter")}}</a>
+                        </li>
+                        {% else -%}
+                        <li><a href="/advurlfilter">{{_("Url Filter")}}</a></li>
+                        {% endif -%}
+                        {% if advcurr=='import' -%}
+                        <li class="pure-menu-selected"><a href="#">{{_("Import Feeds")}}</a>
+                        </li>
+                        {% else -%}
+                        <li><a href="/advimport">{{_("Import Feeds")}}</a></li>
+                        {% endif -%}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock -%}
