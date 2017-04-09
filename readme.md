@@ -59,7 +59,7 @@ config.py          | DOMAIN      | 你申请的应用的域名        |
 **此uploader仅适用于Windows系统。**
 
 #许可协议
-KindleEar is licensed under the [AGPLv3](http://www.gnu.org/licenses/agpl-3.0.html) license.  
+Subscrier is licensed under the [AGPLv3](http://www.gnu.org/licenses/agpl-3.0.html) license.  
 大体的许可框架是此应用代码你可以任意使用，任意修改，可以商用，但是必须将你修改后的代码开源并保留原始版权声明。
 
 #捐赠
