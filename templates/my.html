@@ -14,25 +14,25 @@
         </div>
         <div class="summaryRow">
             <a href="{{feed.url}}" target="_blank" style="text-decoration:none;color:grey;">
-            {%if feed.url|length>80%}{{feed.url[:80]}}...{%else%}{{feed.url}}{%endif%}</a>
+                {%if feed.url|length>80%}{{feed.url[:80]}}...{%else%}{{feed.url}}{%endif%}</a>
         </div>
     </div>
     {% endfor -%}
     {#<form class="pure-form" action="" method="POST">#}
-    <div class="book" style="border-bottom:0;" id="divAddFeedCmdPanel">
-        <div class="titleRow">
-            <input type="text" name="t" id="title_to_add" placeholder={{_("Title")}} style="width:250px;" />
-            <input type="checkbox" name="fulltext" id="fulltext" />
-            <img alt="{{_("Fulltext")}}" src="static/fulltext.gif" border="0" onclick="toggleFulltext();" />
+        <div class="book" style="border-bottom:0;" id="divAddFeedCmdPanel">
+            <div class="titleRow">
+                <input type="text" name="t" id="title_to_add" placeholder={{_("Title")}} style="width:250px;" />
+                <input type="checkbox" name="fulltext" id="fulltext" />
+                <img alt="{{_("Fulltext")}}" src="static/fulltext.gif" border="0" onclick="toggleFulltext();" />
+            </div>
+            <div class="summaryRow">
+                <input type="text" name="url" id="url_to_add" style="width:600px;margin-top:8px;" placeholder="URL" />
+            </div>
+            <input type="button" value="{{_("Add")}}" class="pure-button pure-button-primary" style="margin-top:8px;" 
+                                                                                              onclick="addFeed();return false;" />
+            {% if tips %}<p style="color:red;font-size:0.7em;">{{tips}}</p>{% endif %}
         </div>
-        <div class="summaryRow">
-            <input type="text" name="url" id="url_to_add" style="width:600px;margin-top:8px;" placeholder="URL" />
-        </div>
-        <input type="button" value="{{_("Add")}}" class="pure-button pure-button-primary" style="margin-top:8px;" 
-            onclick="addFeed();return false;" />
-        {% if tips %}<p style="color:red;font-size:0.7em;">{{tips}}</p>{% endif %}
-    </div>
-    {#</form>#}
+        {#</form>#}
 </fieldset>
 {% endif -%}
 <fieldset id="mybooks" style="margin-top:10px;">
@@ -41,16 +41,16 @@
     {% if nickname in book.users -%}
     <div class="book">
         <div class="titleRow">{{book.title}}
-        {% if book.separate -%}
-          <img alt="{{_("Separate")}}" src="static/separate.gif" border="0" />
-        {% endif -%}
+            {% if book.separate -%}
+            <img alt="{{_("Separate")}}" src="static/separate.gif" border="0" />
+            {% endif -%}
         </div>
         <div class="cornerControls">
-          {% if book.needs_subscription -%}
+            {% if book.needs_subscription -%}
             <a href="/booklogininfo/{{book.key().id()}}" class="actionButton"
-            {% if not user.subscription_info(book.title) %}style="color:red;"{% endif %}
-            >{{_("Login Info")}}</a>
-          {% endif -%}
+                                                         {% if not user.subscription_info(book.title) %}style="color:red;"{% endif %}
+                                                         >{{_("Login Info")}}</a>
+            {% endif -%}
             <a href="#" onclick="doUnsubscribe(this,{{book.key().id()}});return false;" class="actionButton">{{_("Unsubscribe")}}</a>
         </div>
         <div class="summaryRow">
@@ -83,19 +83,19 @@
 {% block js -%}
 <script type="text/javascript">
 function toggleFulltext() {
-  var btnft = document.getElementById("fulltext");
-  btnft.checked = !btnft.checked;
+    var btnft = document.getElementById("fulltext");
+    btnft.checked = !btnft.checked;
 }
 function toggleSeparate(id) {
-  id = "separate_" + id
-  var btnft = document.getElementById(id);
-  btnft.checked = !btnft.checked;
+    id = "separate_" + id
+    var btnft = document.getElementById(id);
+    btnft.checked = !btnft.checked;
 }
 
 //点击了订阅内置书籍
 function doSubscribe(obj, id_) {
     var separate = document.getElementById("separate_" + id_).checked;
-    
+
     ajax({url:"/books/subscribe", type: "POST", 
         data: {id_: id_, separate: separate},
         success: function (resp, xml) {
@@ -177,10 +177,10 @@ function addFeed() {
 function appendFeedDiv(title, isfulltext, url, feedid) {
     var newFeedDiv = document.createElement("div");
     newFeedDiv.className = "book";
-    
+
     var newTitleDiv = document.createElement("div");
     newTitleDiv.className = "titleRow";
-    
+
     var titleNode = document.createTextNode(title);
     newTitleDiv.appendChild(titleNode);
     if (isfulltext) {
@@ -192,7 +192,7 @@ function appendFeedDiv(title, isfulltext, url, feedid) {
         newTitleDiv.appendChild(imgNode);
     }
     newFeedDiv.appendChild(newTitleDiv);
-    
+
     var newCornerDiv = document.createElement("div");
     newCornerDiv.className = "cornerControls";
     var atoDel = document.createElement("a");
@@ -202,7 +202,7 @@ function appendFeedDiv(title, isfulltext, url, feedid) {
     atoDel.appendChild(document.createTextNode({{'"' + _("Delete") + '"'}}));
     newCornerDiv.appendChild(atoDel);
     newFeedDiv.appendChild(newCornerDiv);
-    
+
     var sumRowDiv = document.createElement("div");
     sumRowDiv.className = "summaryRow";
     var aa =   document.createElement("a");
@@ -217,7 +217,7 @@ function appendFeedDiv(title, isfulltext, url, feedid) {
     }
     sumRowDiv.appendChild(aa);
     newFeedDiv.appendChild(sumRowDiv);
-    
+
     var cmdPanel = document.getElementById("divAddFeedCmdPanel");
     cmdPanel.parentNode.insertBefore(newFeedDiv, cmdPanel);
 }
@@ -227,7 +227,7 @@ function appendFeedDiv(title, isfulltext, url, feedid) {
 function appendSubscribedBook(id_, title, desc, separate, needs_subscription, subscription_info) {
     var sBookDiv = document.createElement("div");
     sBookDiv.className = "book";
-    
+
     var titleDiv = document.createElement("div");
     titleDiv.className = "titleRow";
     titleDiv.appendChild(document.createTextNode(title));
@@ -240,7 +240,7 @@ function appendSubscribedBook(id_, title, desc, separate, needs_subscription, su
         titleDiv.appendChild(img);
     }
     sBookDiv.appendChild(titleDiv);
-    
+
     var cornDiv = document.createElement("div");
     cornDiv.className = "cornerControls";
     if (needs_subscription) {
@@ -260,7 +260,7 @@ function appendSubscribedBook(id_, title, desc, separate, needs_subscription, su
     aa.appendChild(document.createTextNode({{'"' + _("Unsubscribe") + '"'}}));
     cornDiv.appendChild(aa);
     sBookDiv.appendChild(cornDiv);
-    
+
     var sumDiv = document.createElement("div");
     sumDiv.className = "summaryRow";
     if (desc.length > 80) {
@@ -272,14 +272,14 @@ function appendSubscribedBook(id_, title, desc, separate, needs_subscription, su
         sumDiv.appendChild(document.createTextNode(desc));
     }
     sBookDiv.appendChild(sumDiv);
-    
+
     document.getElementById("mybooks").appendChild(sBookDiv);
 }
 
 function appendBookToBooks(id_, title, desc) {
     var bookDiv = document.createElement("div");
     bookDiv.className = "book";
-    
+
     var titleDiv = document.createElement("div");
     titleDiv.appendChild(document.createTextNode(title));
     var objIn = document.createElement("input");
@@ -294,7 +294,7 @@ function appendBookToBooks(id_, title, desc) {
     img.setAttribute("onclick", "toggleSeparate(" + id_ + ");");
     titleDiv.appendChild(img);
     bookDiv.appendChild(titleDiv);
-    
+
     var cornDiv = document.createElement("div");
     cornDiv.className = "cornerControls";
     var a = document.createElement("a");
@@ -304,7 +304,7 @@ function appendBookToBooks(id_, title, desc) {
     a.appendChild(document.createTextNode({{'"' + _("Subscribe") + '"'}}));
     cornDiv.appendChild(a);
     bookDiv.appendChild(cornDiv);
-    
+
     var sumDiv =  document.createElement("div");
     sumDiv.className = "summaryRow";
     if (desc.length > 80) {
@@ -315,9 +315,9 @@ function appendBookToBooks(id_, title, desc) {
     } else {
         sumDiv.appendChild(document.createTextNode(desc));
     }
-    
+
     bookDiv.appendChild(sumDiv);
-    
+
     document.getElementById("books").appendChild(bookDiv);
 }
 

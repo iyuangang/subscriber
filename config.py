@@ -60,7 +60,7 @@ REDUCE_IMAGE_TO = None #(600,800)
 #clean css in dealing with content from string@appid.appspotmail.com or not
 DELETE_CSS_FOR_APPSPOTMAIL = True
 
-#if word count more than the number, the email received by appspotmail will 
+#if word count more than the number, the email received by appspotmail will
 #be transfered to kindle directly, otherwise, will fetch the webpage for links in email.
 WORDCNT_THRESHOLD_FOR_APMAIL = 100
 

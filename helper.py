@@ -22,7 +22,7 @@ PAT_DOMAIN = r"^DOMAIN\s*=\s*[\"\']([\w:/\.-]+)[\"\'](.*)"
 PAT_TZ = r"^TIMEZONE\s*=\s*?(-{0,1}\d+)(.*)"
 
 
-#(re)move chinese books to a subdirectory (donot display in webpage) 
+#(re)move chinese books to a subdirectory (donot display in webpage)
 def RemoveChineseBooks(ke_dir):
     lang = 'zh_CN'
     cn_books = []
@@ -88,7 +88,7 @@ def RemoveChineseBooks(ke_dir):
                 os.remove(dst)
             except:
                 pass
-        
+
         #remove book to bak directory
         try:
             os.rename(book, dst)
@@ -107,13 +107,13 @@ def Main():
     if not dirs:
         print("Cant found folder 'KindleEar'! Please download it from github firstly.")
         return 1
-    
+
     ke_dir = dirs[0]
     custom_file = os.path.join(os.path.dirname(__file__), CUSTOM_FILE) #file for saving your custom info
     app_yaml = os.path.join(ke_dir, 'app.yaml')
     work_yaml = os.path.join(ke_dir, 'module-worker.yaml')
     cfg_file = os.path.join(ke_dir, 'config.py')
-    
+
     slapp = [] #string buffer for app.yaml
     if os.path.exists(app_yaml):
         with open(app_yaml, 'r') as fapp:
@@ -121,7 +121,7 @@ def Main():
     if not slapp:
         print("Not exist 'app.yaml' or it's invalid, please download KindleEar again.")
         return 1
-        
+
     slcfg = [] #string buffer for config.py
     if os.path.exists(cfg_file):
         with codecs.open(cfg_file, 'r', 'utf-8') as fcfg:
@@ -129,12 +129,12 @@ def Main():
     if not slcfg:
         print("Not exist 'config.py' or it's invalid, please download KindleEar again.")
         return 1
-        
+
     slwork = [] #string buffer for module-worker.yaml
     if os.path.exists(work_yaml):
         with open(work_yaml, 'r') as fwork:
             slwork = fwork.read().split('\n')
-    
+
     #init some parameter
     app = email = timezone = ''
     mt1 = re.match(PAT_APP, slapp[0])
@@ -154,7 +154,7 @@ def Main():
         if mt:
             timezone = mt.group(1)
             continue
-            
+
     slcustom = []
     needinput = True
     if os.path.exists(custom_file):
@@ -167,11 +167,11 @@ def Main():
                 email = line[len('email:'):].strip()
             elif line.lower().startswith('timezone:'):
                 timezone = line[len('timezone:'):].strip()
-    
+
     ret = raw_input('Your custom info :\n\t  app id : %s\n\t   email : %s\n\ttimezone : %s\nCorrect? (y/n) : '%(app,email,timezone))
     if ret in ('y', 'yes', 'Y', 'YES'):
         needinput = False #configure items correct!
-    
+
     while 1:
         if needinput or not all((app, email, timezone)):
             new_app = raw_input('Input app id (%s): ' % app)
@@ -184,7 +184,7 @@ def Main():
                 fcustom.write('application: %s\n' % app)
                 fcustom.write('email: %s\n' % email)
                 fcustom.write('timezone: %s' % timezone)
-                
+
         if all((app, email, timezone)):
             break
         elif not app:
@@ -193,7 +193,7 @@ def Main():
             print('email is empty, please input it again.')
         elif not timezone:
             print('timezone is empty, please input it again.')
-        
+
     #Check and modify app.yaml
     mt = re.match(PAT_APP, slapp[0])
     if mt:
@@ -204,7 +204,7 @@ def Main():
     else:
         print('app.yaml seems invalid, please download KindleEar again.')
         return 1
-    
+
     #Check and modify module-work.yaml
     if slwork:
         mt = re.match(PAT_APP, slwork[0])
@@ -216,7 +216,7 @@ def Main():
         else:
             print('module-work.yaml seems invalid, please download KindleEar again.')
             return 1
-    
+
     #Check and modify config.py
     cfg_changed = False
     for index, line in enumerate(slcfg):
@@ -230,7 +230,7 @@ def Main():
         if mt:
             domain = mt.group(1)
             if domain.endswith('appspot.com') and domain not in (
-                'http://%s.appspot.com' % app, 'https://%s.appspot.com' % app):
+                    'http://%s.appspot.com' % app, 'https://%s.appspot.com' % app):
                 slcfg[index] = 'DOMAIN = "https://%s.appspot.com"' % app + mt.group(2)
                 cfg_changed = True
             continue
@@ -243,15 +243,15 @@ def Main():
     if cfg_changed:
         with codecs.open(cfg_file, 'w', 'utf-8') as fcfg:
             fcfg.write('\n'.join(slcfg))
-    
+
     RemoveChineseBooks(ke_dir)
-    
+
     return 0
-    
+
 if __name__ == '__main__':
     print('\nKindleEar uploader v%s (%s) by %s\n' % (__Version__, __Date__, __Author__))
     ret = Main()
     if ret:
         import sys
         sys.exit(ret)
-        
+
